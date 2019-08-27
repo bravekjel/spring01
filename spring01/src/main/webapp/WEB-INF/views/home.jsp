@@ -31,7 +31,8 @@ String context = request.getContextPath();
     />
 
     <title>The Web framework for perfectionists with deadlines | Django</title>
-    <P>  ${serverTime}. </P>
+<%@ include file="include/menu.jsp" %>
+<%@ include file="include/modal.jsp" %>
 
   </head>
 
@@ -42,15 +43,7 @@ String context = request.getContextPath();
       <div class="container">
 
         <h1 class="logo">
-
-          <img
-
-            src="https://static.djangoproject.com/img/logo-django.42234b631760.svg"
-
-            alt="Django"
-
-          />
-
+        brave  kjel
         </h1>
 
         <nav class="nav">
@@ -89,15 +82,13 @@ String context = request.getContextPath();
 
           <p class="intro-desc">
 
-            Django makes it easier to build better Web apps more quickly and
-
-            with less code.
+            Web Project name=finance stock note.
 
           </p>
 
-          <a href="#" class="hero-cta cta">
+          <a data-toggle="modal" href="#search_stock" class="hero-cta cta">
 
-            Get started with Django
+            Searching stock with 6 numbers
 
           </a>
 
@@ -328,6 +319,9 @@ String context = request.getContextPath();
     </main>
 
     <footer class="footer">νΈν°</footer>
+
+
+
 
   </body>
 
