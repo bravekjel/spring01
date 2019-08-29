@@ -1,3 +1,4 @@
+<%@page import="com.example.spring01.model.dto.financialInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.beans.XMLEncoder"%>
 <%@ page import="org.w3c.dom.*" %>
@@ -7,7 +8,6 @@
 <%@ page import="java.net.*"%>
 <%@ page import="javax.xml.parsers.*"%>
 <%@ page import="javax.servlet.http.HttpServletResponse.*"%> 
-
 	
 
 <%
@@ -15,7 +15,6 @@
 	System.out.print("key값="+key);
 	String geturl = "http://asp1.krx.co.kr/servlet/krx.asp.XMLJemu?code="+key;
 	String gettime="";
-
 	String DaeCha_ym[]= new String [6];
 	String SonIk_ym[]= new String [6];
 	String CashFlow_ym[]= new String [6];
@@ -27,10 +26,13 @@
 	int daeCha_data_length = 0;
 	int sonIk_data_length = 0;
 	int cashFlow_data_length = 0;
+	
 
 	String line="";
-	String xml = "";
+	String xml = ""; 
 
+	
+	
 	try{
 		URL url = new URL(geturl);
 		URLConnection conn = url.openConnection();
@@ -256,6 +258,7 @@ String context = request.getContextPath();
 							<th>증감율</th>
 						</tr>
 						<%if(sonIk_data_length > 0){%>
+						<%System.out.print("sonIk_data="+SonIk_data); %>
 							<%for(int i=0;i<sonIk_data_length;i++){ %>
 							<tr>
 								<td><%=SonIk_data[i][0]%></td>

@@ -21,6 +21,11 @@ $(function(){
 		var num = repl(key);
 		location.href="${path}/search_stock/disInfo.do?num="+num;
 	});
+	$("#finan1").click(function(){
+		var key = $("#number").val();
+		var num = repl(key)
+		location.href="${path}/search_stock/finan1.do?num="+num;
+	});
 	
 	
 function repl(key){
@@ -62,6 +67,7 @@ function repl(key){
        <button type="button" id="disInfo" class="stock_num" data-dismiss="modal">disInfo</button>
        <button type="button" id="financialInfo" class="stock_num" data-dismiss="modal">financialInfo</button>
        <button type="button" id="stockInfo" class="stock_num" data-dismiss="modal" >stockInfo</button>
+       <button type="button" id="finan1" class="stock_num" data-dismiss="modal">finan1</button>
       </div>
       <!-- Footer -->
       <div class="modal-footer">
