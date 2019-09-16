@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="daecha">
+<insert id="insert">
+INSERT INTO 
+
+	DaeCha_data
+	
+	 (S_NUM,S_NAME,
+	 HANGMOK_1,
+	 YEAR1MONEY_1,YEAR1GUSUNGRATE_1,YEAR1JUNGGAMRATE_1,
+	 YEAR2MONEY_1,YEAR2GUSUNGRATE_1,YEAR2JUNGGAMRATE_1,
+	 YEAR3MONEY_1,YEAR3GUSUNGRATE_1,YEAR3JUNGGAMRATE_1,
+	 HANGMOK_2,
+	 YEAR1MONEY_2,YEAR1GUSUNGRATE_2,YEAR1JUNGGAMRATE_2,
+	 YEAR2MONEY_2,YEAR2GUSUNGRATE_2,YEAR2JUNGGAMRATE_2,
+	 YEAR3MONEY_2,YEAR3GUSUNGRATE_2,YEAR3JUNGGAMRATE_2,
+	 HANGMOK_3,
+	 YEAR1MONEY_3,YEAR1GUSUNGRATE_3,YEAR1JUNGGAMRATE_3,
+	 YEAR2MONEY_3,YEAR2GUSUNGRATE_3,YEAR2JUNGGAMRATE_3,
+	 YEAR3MONEY_3,YEAR3GUSUNGRATE_3,YEAR3JUNGGAMRATE_3,
+	 HANGMOK_4,
+	 YEAR1MONEY_4,YEAR1GUSUNGRATE_4,YEAR1JUNGGAMRATE_4,
+	 YEAR2MONEY_4,YEAR2GUSUNGRATE_4,YEAR2JUNGGAMRATE_4,
+	 YEAR3MONEY_4,YEAR3GUSUNGRATE_4,YEAR3JUNGGAMRATE_4,
+	 HANGMOK_5,
+	 YEAR1MONEY_5,YEAR1GUSUNGRATE_5,YEAR1JUNGGAMRATE_5,
+	 YEAR2MONEY_5,YEAR2GUSUNGRATE_5,YEAR2JUNGGAMRATE_5,
+	 YEAR3MONEY_5,YEAR3GUSUNGRATE_5,YEAR3JUNGGAMRATE_5,
+	 HANGMOK_6,
+	 YEAR1MONEY_6,YEAR1GUSUNGRATE_6,YEAR1JUNGGAMRATE_6,
+	 YEAR2MONEY_6,YEAR2GUSUNGRATE_6,YEAR2JUNGGAMRATE_6,
+	 YEAR3MONEY_6,YEAR3GUSUNGRATE_6,YEAR3JUNGGAMRATE_6,
+	 HANGMOK_7,
+	 YEAR1MONEY_7,YEAR1GUSUNGRATE_7,YEAR1JUNGGAMRATE_7,
+	 YEAR2MONEY_7,YEAR2GUSUNGRATE_7,YEAR2JUNGGAMRATE_7,
+	 YEAR3MONEY_7,YEAR3GUSUNGRATE_7,YEAR3JUNGGAMRATE_7,
+	 HANGMOK_8,
+	 YEAR1MONEY_8,YEAR1GUSUNGRATE_8,YEAR1JUNGGAMRATE_8,
+	 YEAR2MONEY_8,YEAR2GUSUNGRATE_8,YEAR2JUNGGAMRATE_8,
+	 YEAR3MONEY_8,YEAR3GUSUNGRATE_8,YEAR3JUNGGAMRATE_8,
+	 HANGMOK_9,
+	 YEAR1MONEY_9,YEAR1GUSUNGRATE_9,YEAR1JUNGGAMRATE_9,
+	 YEAR2MONEY_9,YEAR2GUSUNGRATE_9,YEAR2JUNGGAMRATE_9,
+	 YEAR3MONEY_9,YEAR3GUSUNGRATE_9,YEAR3JUNGGAMRATE_9,
+	 HANGMOK_10,
+	 YEAR1MONEY_10,YEAR1GUSUNGRATE_10,YEAR1JUNGGAMRATE_10,
+	 YEAR2MONEY_10,YEAR2GUSUNGRATE_10,YEAR2JUNGGAMRATE_10,
+	 YEAR3MONEY_10,YEAR3GUSUNGRATE_10,YEAR3JUNGGAMRATE_10)
+VALUES
+	(#{s_num},#{s_name},
+	 #{hangMok_1},
+	 #{year1Money_1},#{year1GusungRate_1},#{year1JungGamRate_1},
+	 #{year2Money_1},#{year2GusungRate_1},#{year2JungGamRate_1},
+	 #{year3Money_1},#{year3GusungRate_1},#{year3JungGamRate_1},
+	 #{hangMok_2},
+	 #{year1Money_2},#{year1GusungRate_2},#{year1JungGamRate_2},
+	 #{year2Money_2},#{year2GusungRate_2},#{year2JungGamRate_2},
+	 #{year3Money_2},#{year3GusungRate_2},#{year3JungGamRate_2},
+	 #{hangMok_3},
+	 #{year1Money_3},#{year1GusungRate_3},#{year1JungGamRate_3},
+	 #{year2Money_3},#{year2GusungRate_3},#{year2JungGamRate_3},
+	 #{year3Money_3},#{year3GusungRate_3},#{year3JungGamRate_3},
+	 #{hangMok_4},
+	 #{year1Money_4},#{year1GusungRate_4},#{year1JungGamRate_4},
+	 #{year2Money_4},#{year2GusungRate_4},#{year2JungGamRate_4},
+	 #{year3Money_4},#{year3GusungRate_4},#{year3JungGamRate_4},
+	 #{hangMok_5},
+	 #{year1Money_5},#{year1GusungRate_5},#{year1JungGamRate_5},
+	 #{year2Money_5},#{year2GusungRate_5},#{year2JungGamRate_5},
+	 #{year3Money_5},#{year3GusungRate_5},#{year3JungGamRate_5},
+	 #{hangMok_6},
+	 #{year1Money_6},#{year1GusungRate_6},#{year1JungGamRate_6},
+	 #{year2Money_6},#{year2GusungRate_6},#{year2JungGamRate_6},
+	 #{year3Money_6},#{year3GusungRate_6},#{year3JungGamRate_6},
+	 #{hangMok_7},
+	 #{year1Money_7},#{year1GusungRate_7},#{year1JungGamRate_7},
+	 #{year2Money_7},#{year2GusungRate_7},#{year2JungGamRate_7},
+	 #{year3Money_7},#{year3GusungRate_7},#{year3JungGamRate_7},
+	 #{hangMok_8},
+	 #{year1Money_8},#{year1GusungRate_8},#{year1JungGamRate_8},
+	 #{year2Money_8},#{year2GusungRate_8},#{year2JungGamRate_8},
+	 #{year3Money_8},#{year3GusungRate_8},#{year3JungGamRate_8},
+	 #{hangMok_9},
+	 #{year1Money_9},#{year1GusungRate_9},#{year1JungGamRate_9},
+	 #{year2Money_9},#{year2GusungRate_9},#{year2JungGamRate_9},
+	 #{year3Money_9},#{year3GusungRate_9},#{year3JungGamRate_9},
+	 #{hangMok_10},
+	 #{year1Money_10},#{year1GusungRate_10},#{year1JungGamRate_10},
+	 #{year2Money_10},#{year2GusungRate_10},#{year2JungGamRate_10},
+	 #{year3Money_10},#{year3GusungRate_10},#{year3JungGamRate_10}
+	)
+
+</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

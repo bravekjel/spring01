@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response>
+	<header>
+		<resultCode>00</resultCode>
+		<resultMsg>NORMAL SERVICE.</resultMsg>
+	</header>
+	<body>
+		<items>
+			<item>
+				<isin>KR7176950004</isin>
+				<issuDt>20130528</issuDt>
+				<issucoCustno>182334</issucoCustno>
+				<korSecnNm>삼성KODEX10년국채선물인버스증권상장지수투자신탁[채권-파생형]</korSecnNm>
+				<secnKacdNm>보통주</secnKacdNm>
+				<shotnIsin>176950</shotnIsin>
+			</item>
+			<item>
+				<isin>KR7223190000</isin>
+				<issuDt>20150623</issuDt>
+				<issucoCustno>199158</issucoCustno>
+				<korSecnNm>삼성KODEX200가치저변동증권상장지수투자신탁[주식]</korSecnNm>
+				<secnKacdNm>보통주</secnKacdNm>
+				<shotnIsin>223190</shotnIsin>
+			</item>
+		</items>
+		<numOfRows>2</numOfRows>
+		<pageNo>1</pageNo>
+		<totalCount>152</totalCount>
+	</body>
+</response>
