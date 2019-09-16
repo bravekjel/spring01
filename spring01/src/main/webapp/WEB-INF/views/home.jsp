@@ -32,8 +32,60 @@ String context = request.getContextPath();
 
     <title>The Web framework for perfectionists with deadlines | Django</title>
 <%@ include file="include/menu.jsp" %>
-<%@ include file="include/modal.jsp" %>
+<%@ include file="include/modal/search_6nums.jsp" %>
+<%@ include file="include/modal/6nums.jsp" %>
+<script>
 
+function sfind(){
+	var invocation = new XMLHttpRequest();
+	var formName = document.sfind;
+	var str = $(formName).serialize();
+	var sname=$("#snames").val();
+	var myurl = "http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?secnNm="+sname+"&numOfRows=2&pageNo=1&ServiceKey=qMWBfGFhp4J1REtArquWOwxObYzh%2FoesRVV7scn4Hf3Xm%2BFEMMen0BMT4MhI%2BBwsrAlz5ik%2Bb87Q0pffXDuEFw%3D%3D";
+	var xurl = "http://mannaedu.com";
+	$.get(xurl, function(data){
+		console.log('data=='+data);
+	},"text/html");
+	$.ajax({
+		type:"GET",
+		/*dataType:"json",
+		crossDomain:true,
+		 url:" http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?serviceKey=qMWBfGFhp4J1REtArquWOwxObYzh%2FoesRVV7scn4Hf3Xm%2BFEMMen0BMT4MhI%2BBwsrAlz5ik%2Bb87Q0pffXDuEFw%3D%3D&secnNm="+sname+"&numOfRows=2&pageNo=1", 
+		data:str,
+		form: formName,*/
+		url:myurl,
+		 contentType: 'application/xml',
+		  dataType:'xml',
+		  responseType:'application/xml',
+		  headers: {
+			    'Access-Control-Allow-Credentials' : true,
+			    'Access-Control-Allow-Origin':'*',
+			    'Access-Control-Allow-Methods':'GET',
+			    'Access-Control-Allow-Headers':'application/xml',
+			  },
+		success: function(result){
+			console.log("success="+result);          
+			if($(result).find('items').length > 0){
+				$(result).find('items').each(function(){
+					console.log('종목번호'+$(this).find('shotnIsin').text());
+				});
+			}
+		},
+		error:function(result){
+			console.log("error="+result);
+		},
+		complete:function(result){
+			console.log("complete="+result);
+		}
+		
+	});
+}	
+
+
+
+
+		
+</script>
   </head>
 
   <body>
@@ -118,20 +170,22 @@ String context = request.getContextPath();
 
                 <a href="#">
 
-                  Using Django
+                  Using DATA.GO.KR
 
                 </a>
 
               </h3>
 
               <p class="mailing-desc">
-
-                Get help with Django and follow announcements.
+				<span class="img_open">
+				
+               Information
+				</span>
 
               </p>
 
-              <form action="#" class="mailing-form">
-
+              <form action ="${path}/snames/find.do"   class="mailing-form" >
+					<%-- name="sfind" method="post"  --%>
                 <label for="input-following"
 
                   >send email for following news</label
@@ -140,17 +194,20 @@ String context = request.getContextPath();
 
                 <input
 
-                  type="email"
+                  type="text"
 
-                  placeholder="Enter email"
+                  placeholder="Stock name"
 
-                  id="input-following"
+                  id="snames"
 
-                  name="input-following"
+                  name="snames"
+                  />
+				
+				<!-- data-toggle="modal" data-target="#6nums" -->
+                
 
-                />
-
-                <button type="submit" class="mailing-form-btn">Submit</button>
+              <!-- <a href="javascript:sfind()"  class="mailing-form-btn" >Find</a> -->
+                 <button type="submit" class="mailing-form-btn">Find</button>
 
               </form>
 

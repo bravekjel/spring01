@@ -175,7 +175,7 @@ public class SearchController {
 			//0-9 번째 까지 
 			//주식번호
 			dto.setS_num(num);
-			dto.setS_name("종목이름");
+			dto.setS_name("SIMPAC");
 			
 			// 0 번째  유동자산(_1)
 			NamedNodeMap daeCha_data0 = TBL_DaeCha_data.item(0).getAttributes();

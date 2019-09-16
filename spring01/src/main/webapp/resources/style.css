@@ -291,14 +291,26 @@ a {
 }
 
 .mailing-desc {
-
+	
+ 
   margin: 0;
 
   font-size: 1.4rem;
 
   line-height: 1.3;
-
+  
 }
+.mailing-desc .img_open {
+
+	padding-left:90px;
+    display :inline-block;
+    width: 55px;
+    height: 35px; 
+    background-image: url(./search_stock/img/img_opentype02.png);
+    background-repeat: no-repeat;
+  
+}
+
 
 .mailing-form {
 
@@ -337,7 +349,19 @@ input[type="email"] {
   padding: 6px 80px 8px 10px;
 
 }
+input[type="text"] {
 
+  width: 100%;
+
+  border: 1px solid #cfe3dc;
+
+  border-radius: 4px;
+
+  height: 5rem;
+
+  padding: 6px 80px 8px 10px;
+
+}
 .mailing-form-btn {
 
   position: absolute;
@@ -535,6 +559,7 @@ input[type="email"] {
   color: #859d94;
 
 }
+
 
 
 
