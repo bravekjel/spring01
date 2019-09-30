@@ -65,7 +65,7 @@
 				return;
 			}
 			 
-			document.form1.action="${path}/board/insert.do"; 
+			
 			document.form1.submit();
 		});
 	});
@@ -108,8 +108,7 @@
 			<div id="uploadedList"></div>
 		</div>
 		 <div>
-이름
-<input name="writer" placeholder="이름을 입력하세요">
+
 </div>
 		<div style="width: 700px; text-align: center;">
 			<button type="button" id="btnSave">확인</button>

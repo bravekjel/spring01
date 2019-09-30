@@ -26,10 +26,13 @@ public class UserController {
 	private UserDAO userDao;
 
 	@RequestMapping("/")
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model,HttpServletRequest req,HttpSession session) {
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+		String name= (String) req.getAttribute("name");
+	
+		System.out.println("name="+name);
+		session.setAttribute("writer", name);
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );

@@ -17,7 +17,9 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		UserDTO dto = (UserDTO) auth.getPrincipal();
 		System.out.println(dto+"님 환영합니다.");
 		String msg = auth.getName() + "님 환영합니다.";
+		String name= auth.getName();
 		req.setAttribute("msg", msg);
+		req.setAttribute("name", name);
 // forward, redirect 가능
 		RequestDispatcher rd = req.getRequestDispatcher("/");
 		rd.forward(req, res);

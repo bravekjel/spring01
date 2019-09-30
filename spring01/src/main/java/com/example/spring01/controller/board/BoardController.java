@@ -81,11 +81,13 @@ public class BoardController {
 
 	@RequestMapping(value = "insert.do", method = RequestMethod.POST)
 //	@RequestMapping("insert.do")
-	public String insert(@ModelAttribute BoardDTO dto, HttpSession session) throws Exception {
+	public String insert(@ModelAttribute BoardDTO dto, HttpSession session, HttpServletRequest req) throws Exception {
 		System.out.println("insert.do");
 		// 세션에 저장된 아이디를 조회
-		String writer = (String) session.getAttribute("userid");
+		String writer = (String) session.getAttribute("writer");
 		System.out.println("userid="+writer);
+		String name= (String) req.getAttribute("name");
+		System.out.println("name="+name);
 		dto.setWriter(writer);
 		boardService.create(dto);
 		return "redirect:/board/list.do";
