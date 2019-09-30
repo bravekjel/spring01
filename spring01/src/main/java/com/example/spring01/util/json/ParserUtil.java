@@ -44,7 +44,25 @@ public class ParserUtil {
 		}
 		return new HashMap<String, Object>();
 	}
-	
+	public static String openapi(String url) {
+		System.out.println("openapi");
+		BufferedReader br = null;
+		try {
+			URL urls = new URL(url);
+			HttpURLConnection urlconnection = (HttpURLConnection) urls.openConnection();
+			urlconnection.setRequestMethod("GET");
+			br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(),"UTF-8"));
+			String result = "";
+			String line;
+			while((line = br.readLine()) != null) {
+				result = result + line +"\n";
+			}
+			System.out.println(result);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return url;
+	}
 	public static String geturl(String url) {
 		String line= "";
 		try {

@@ -41,18 +41,34 @@ function sfind(){
 	var formName = document.sfind;
 	var str = $(formName).serialize();
 	var sname=$("#snames").val();
-	var myurl = "http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?secnNm="+sname+"&numOfRows=2&pageNo=1&ServiceKey=qMWBfGFhp4J1REtArquWOwxObYzh%2FoesRVV7scn4Hf3Xm%2BFEMMen0BMT4MhI%2BBwsrAlz5ik%2Bb87Q0pffXDuEFw%3D%3D";
+	var sname1 = escape(sname);
+	var myurl = "http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?secnNm="+sname1+"&numOfRows=2&pageNo=1&ServiceKey=qMWBfGFhp4J1REtArquWOwxObYzh%2FoesRVV7scn4Hf3Xm%2BFEMMen0BMT4MhI%2BBwsrAlz5ik%2Bb87Q0pffXDuEFw%3D%3D";
 	var xurl = "http://mannaedu.com";
+	
+	var request = new XMLHttpRequest();
+	/* var req = urllib.request.Request(myurl);
+	var res = urllib.request.urlopen(req);
+	console.log("res="+res.read()) */
+	request.open('GET',myurl);
+	request.responseType='json';
+	request.send();
 	$.get(xurl, function(data){
 		console.log('data=='+data);
 	},"text/html");
 	$.ajax({
+		url : '${path}/snames/data.do',
+		type : 'get',
+		data : sname,
+		dataType : 'json',
+		success : function(msg){
+			console.log(msg.response.body.items.item);
+			var myItem = msg.response.body.items.item;
+			
+		
+		}
+	});
+	$.ajax({
 		type:"GET",
-		/*dataType:"json",
-		crossDomain:true,
-		 url:" http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?serviceKey=qMWBfGFhp4J1REtArquWOwxObYzh%2FoesRVV7scn4Hf3Xm%2BFEMMen0BMT4MhI%2BBwsrAlz5ik%2Bb87Q0pffXDuEFw%3D%3D&secnNm="+sname+"&numOfRows=2&pageNo=1", 
-		data:str,
-		form: formName,*/
 		url:myurl,
 		 contentType: 'application/xml',
 		  dataType:'xml',
@@ -102,7 +118,7 @@ function sfind(){
 
           <ul class="list">
 
-            <li class="list-item"><a href="#">board</a></li>
+            <li class="list-item"><a href="${path}/board/list.do">board</a></li>
 
             <li class="list-item"><a href="#">Download</a></li>
 
@@ -206,8 +222,8 @@ function sfind(){
 				<!-- data-toggle="modal" data-target="#6nums" -->
                 
 
-              <!-- <a href="javascript:sfind()"  class="mailing-form-btn" >Find</a> -->
-                 <button type="submit" class="mailing-form-btn">Find</button>
+           <a href="javascript:sfind()"  class="mailing-form-btn" >Find</a>
+                    <!-- <button type="submit" class="mailing-form-btn">Find</button>--> 
 
               </form>
 

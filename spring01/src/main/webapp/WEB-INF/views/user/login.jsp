@@ -33,5 +33,6 @@
 			</tr>
 		</table>
 	</form>
+	<%@ include file="../home.jsp" %>
 </body>
 </html>

@@ -15,7 +15,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth)
 			throws IOException, ServletException {
 		UserDTO dto = (UserDTO) auth.getPrincipal();
-		System.out.println(dto);
+		System.out.println(dto+"님 환영합니다.");
 		String msg = auth.getName() + "님 환영합니다.";
 		req.setAttribute("msg", msg);
 // forward, redirect 가능
