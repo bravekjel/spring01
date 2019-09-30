@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="board">
+	<!-- 게시물의 첨부파일 목록 -->
+	<select id="getAttach" resultType="String">
+		SELECT
+			FULLNAME
+		FROM
+			ATTACH
+		WHERE
+			BNO = #{bno}
+		ORDER BY
+			REGDATE	
+		
+	</select>
+	<delete id="deleteAttach">
+		delete from 
+			attach
+		where 
+			fullName=#{fullName}
+	</delete>
+	<insert id="insert">
+		insert into 
+			board
+			(bno,title,content,writer,show)
+		values
+			(seq_board.nextval,#{title},#{content},#{writer},'y')
+	</insert>
+	<insert id="addAttach">
+		insert into 
+			attach (fullName,bno)
+		values
+			( #{fullName}, seq_board.currval)
+	</insert>
+	<insert id="updateAttach">
+		insert into 
+		attach (fullName,bno)
+		values
+			( #{fullName}, #{bno} )
+	</insert>
+	<!-- 레코드 갯수 계산 -->
+	<select id="countArticle" resultType="int">
+		select 
+			count(*)
+		from 
+			board b, users m
+		<include refid="search" />
+	</select>
+	<select id="listAll"
+		resultType="com.example.spring01.model.board.dto.BoardDTO">
+		<include refid="paging_header" />
+		select 
+			rownum , bno,title,content,b.regdate,viewcnt,name, show
+		,(select count(*) from reply where bno=b.bno) cnt
+		from 
+			board b, users m
+		<!-- 이 부분에 where절이 삽입됨 -->
+		<include refid="search" />
+		order by 
+			bno desc, regdate desc
+		<include refid="paging_footer" />
+	</select>
+	<select id="view"
+		resultType="com.example.spring01.model.board.dto.BoardDTO">
+		select 
+		bno,title,content,b.regdate,viewcnt,name,writer ,show
+		from 
+			board b, users m
+		where 
+			b.writer=m.userid and bno=#{bno}
+	</select>
+	<update id="increaseViewcnt">
+		update board
+		set 
+			viewcnt=viewcnt+1 
+		where 
+			bno=#{bno}
+	</update>
+	<update id="updateArticle">
+		update board
+		set 
+			title=#{title},content=#{content}
+		where 
+			bno=#{bno}
+	</update>
+	<!-- <delete id="deleteArticle"> delete from board where bno=#{bno} </delete> -->
+	<update id="deleteArticle">
+		update board
+		set 
+			show='n'
+		where 
+			bno=#{bno}
+	</update>
+	<!-- sql code 조각 mybatis 조건문의 변수명에는 #을 사용하지 않음 -->
+	<sql id="search">
+		<choose>
+			<when test="search_option == 'all'">
+				where
+					b.writer=m.userid
+				and
+					( name like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' )
+			</when>
+			<otherwise>
+				where 
+					b.writer=m.userid 
+				and
+					${search_option} like '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+	<sql id="paging_header">
+		select *
+		from (
+		select 
+			rownum as rn, A.*
+		from (
+	</sql>
+	<sql id="paging_footer">
+		) A
+		) where rn between #{start} and #{end}
+	</sql>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
