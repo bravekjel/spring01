@@ -36,19 +36,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<insert id="insertReply">
 		insert into reply
-			(rno,bno,replytext,replyer,secret_reply)
+			(rno,bno,replytext,replyer)
 		values
 			(reply_seq.nextval, #{bno}, #{replytext},#{replyer}
-			,#{secret_reply})
+			)
 	</insert>
 	<select id="listReply"
 		resultType="com.example.spring01.model.board.dto.ReplyDTO">
 		<include refid="paging_header" />
 		select 
-			rno,bno,replytext,replyer,name,r.regdate,r.updatedate,secret_reply
+			rno,bno,replytext,replyer,name,r.regdate,r.updatedate
 			,(select writer from board where bno=r.bno) writer
 		from 
-			reply r, member m
+			reply r, users m
 		where
 			r.replyer=m.userid 
 		and 

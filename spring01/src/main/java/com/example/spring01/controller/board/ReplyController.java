@@ -81,7 +81,7 @@ public class ReplyController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/list/{bno}/{curPage}", method = RequestMethod.GET)
+	@RequestMapping(value = "/list.do/{bno}/{curPage}", method = RequestMethod.GET)
 	public ModelAndView reply_list(@PathVariable("bno") int bno, @PathVariable int curPage, ModelAndView mav,
 			HttpSession session) {
 		int count = replyService.count(bno); // 댓글 갯수

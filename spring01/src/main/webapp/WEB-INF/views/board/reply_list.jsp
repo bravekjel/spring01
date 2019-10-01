@@ -7,14 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%-- <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> --%>
 </head>
 
 <body>
 <table style="width:700px;">
 <% pageContext.setAttribute("newLineChar","\n"); %>
 <c:forEach var="row" items="${list}">
-	<c:set var="str" value="${fn:replace(row,replytext,' ','&nbsp;&nbsp;') }" />
+	<c:set var="str" value="${fn:replace(row.replytext,' ','&nbsp;&nbsp;') }" />
 	<c:set var="str" value="${fn:replace(str,newLineChar,'<br>') }"/>
  <tr>
 	<td>
