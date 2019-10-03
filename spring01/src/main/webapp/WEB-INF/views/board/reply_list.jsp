@@ -8,9 +8,22 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
 <%-- <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> --%>
+<script type="text/javascript">
+function showModify(rno){
+	$.ajax({
+		type : "get",
+		url : "${path}/reply/detail/"+rno,
+		success: function(result){
+			$("#modifyReply").html(result);
+			$("#modifyReply").css("visibility", "visible");
+		}
+	});
+}
+</script>
 </head>
 
 <body>
+<div id="modifyReply"></div>
 <table style="width:700px;">
 <% pageContext.setAttribute("newLineChar","\n"); %>
 <c:forEach var="row" items="${list}">

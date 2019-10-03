@@ -7,7 +7,7 @@ String context = request.getContextPath();
 %>
 <html lang="en">
 <h2>${msg}</h2>
-<a href="${path}/admin/">관리자 페이지</a><br>
+
 <a href="${path}/user/logout.do">로그아웃</a>
 
   <head>
@@ -31,7 +31,7 @@ String context = request.getContextPath();
     />
 
     <title>The Web framework for perfectionists with deadlines | Django</title>
-<%@ include file="include/menu.jsp" %>
+
 <%@ include file="include/modal/search_6nums.jsp" %>
 <%@ include file="include/modal/6nums.jsp" %>
 <script>

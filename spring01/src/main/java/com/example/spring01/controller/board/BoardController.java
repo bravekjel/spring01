@@ -85,9 +85,9 @@ public class BoardController {
 		System.out.println("insert.do");
 		// 세션에 저장된 아이디를 조회
 		String writer = (String) session.getAttribute("writer");
-		System.out.println("userid="+writer);
-		String name= (String) req.getAttribute("name");
-		System.out.println("name="+name);
+		System.out.println("글쓴이="+writer);
+		String userid = (String) session.getAttribute("userid");
+		System.out.println("userid="+userid);
 		dto.setWriter(writer);
 		boardService.create(dto);
 		return "redirect:/board/list.do";

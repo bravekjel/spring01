@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="com.example.spring01.model.board.dto.ReplyDTO">
 		<include refid="paging_header" />
 		select 
-			rno,bno,replytext,replyer,name,r.regdate,r.updatedate
+			rno,bno,replytext,replyer,name,r.regdate,r.updatedate, r.secret_reply
 			,(select writer from board where bno=r.bno) writer
 		from 
 			reply r, users m

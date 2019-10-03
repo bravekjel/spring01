@@ -30,9 +30,10 @@ public class UserController {
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String name= (String) req.getAttribute("name");
-	
+		String userid=(String) req.getAttribute("userid");
 		System.out.println("name="+name);
 		session.setAttribute("writer", name);
+		session.setAttribute("userid", userid);
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );

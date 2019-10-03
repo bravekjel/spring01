@@ -43,6 +43,6 @@ public class UserAuthenticationService implements UserDetailsService {
 		authority.add(new SimpleGrantedAuthority(user.get("AUTHORITY").toString()));
 		return new UserDTO(user.get("USERNAME").toString(), user.get("PASSWORD").toString(),
 				(Integer) Integer.valueOf(user.get("ENABLED").toString()) == 1, true, true, true, authority,
-				user.get("USERNAME").toString());
+				user.get("USERNAME").toString(),(String) user.get(("NAME").toString()));
 	}
 }

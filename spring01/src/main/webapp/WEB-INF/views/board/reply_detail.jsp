@@ -12,13 +12,13 @@
 		//댓글 삭제 버튼 클릭
 		$("#btnReplyDelete").click(function() {
 			$.ajax({
-				type : "delete",
+				
 				url : "${path}/reply/delete/${dto.rno}",
 				success : function(result) {
 					if (result == "success") {
 						alert("삭제되었습니다.");
 						$("#modifyReply").css("visibility", "hidden");
-						listReply_rest("1");
+						listReply("1");
 					}
 				}
 			});
@@ -27,22 +27,22 @@
 		// put : 전체 수정, patch : 일부 수정
 		$("#btnReplyUpdate").click(function() {
 			var replytext = $("#detail_replytext").val();
+			var csrf = "${_csrf.token}";
+			var param = {
+					"replytext": replytext,
+					"${_csrf.parameterName}" : csrf
+			}
 			$.ajax({
-				type : "put",
+				
 				url : "${path}/reply/update/${dto.rno}",
-				headers : {
-					"Content-Type" : "application/json"
-				},
-				data : JSON.stringify({
-					replytext : replytext
-				}),
-				dataType : "text",
+				data : param,
 				success : function(result) {
 					if (result == "success") {
+						console.log("result="+result);
 						//div 숨김 처리
 						$("#modifyReply").css("visibility", "hidden");
 						//댓글 목록 갱신
-						listReply_rest("1");
+						listReply("1");
 					}
 				}
 			});
@@ -50,8 +50,10 @@
 		//닫기 버튼 클릭
 		$("#btnReplyClose").click(function() {
 			$("#modifyReply").css("visibility", "hidden");
+			listReply("1");
 		});
 	});
+	
 </script>
 </head>
 <body>

@@ -12,6 +12,7 @@ http://www.springframework.org/schema/security/spring-security.xsd
 http://www.springframework.org/schema/util
 http://www.springframework.org/schema/util/spring-util.xsd">
 	<!-- 정적 리소스 파일들에는 보안 설정을 하지 않음 -->
+	<http pattern="/resources/**" security="none"/>
 	<http pattern="/include/**" security="none" />
 	<http pattern="/ckeditor/**" security="none"/>
 	

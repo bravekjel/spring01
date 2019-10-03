@@ -25,36 +25,38 @@
 		$(".fileDrop").on("dragenter dragover", function(e) {
 			e.preventDefault();
 		});
-		$(".fileDrop")
-				.on(
-						"drop",
-						function(e) {
+		$(".fileDrop").on("drop",function(e) {
 							e.preventDefault();
 							//드롭한 파일을 폼데이터에 추가함
 							var files = e.originalEvent.dataTransfer.files;
 							var file = files[0];
 							var formData =new FormData();
-//폼데이터에 추가
-formData.append("file",file);
-//processData: false - header가 아닌 body로 전송
-$.ajax({
-																		url : "${path}/upload/uploadAjax",
-										data : formData,
-										dataType : "text",
-										processData : false,
-										contentType : false,
-										type : "post",
-										success : function(data) { //콜백함수
-											var fileInfo = getFileInfo(data); //첨부파일 정보
-											var html = "<a href='"+fileInfo.getLink+"'>"
-													+ fileInfo.fileName
-													+ "</a><br>"; //첨부파일 링크
-											html += "<input type='hidden' class='file' value='"
-+fileInfo.fullName+"'>"; //hidden 태그 추가
-											$("#uploadedList").append(html); //div에 추가
-										}
-									});
-						});
+							var csrf = "${_csrf.token}";
+							//폼데이터에 추가
+							formData.append("file",file);
+							var param = {
+									"formData": formData,
+									"${_csrf.parameterName}" : csrf
+							}
+							//processData: false - header가 아닌 body로 전송
+					$.ajax({
+						url : "${path}/upload/uploadAjax",
+							data : formData,
+							dataType : "text",
+							processData : false,
+							contentType : false,
+							type : "post",
+							success : function(data) { //콜백함수
+								var fileInfo = getFileInfo(data); //첨부파일 정보
+								var html = "<a href='"+fileInfo.getLink+"'>"
+										+ fileInfo.fileName
+										+ "</a><br>"; //첨부파일 링크
+								html += "<input type='hidden' class='file' value='"
+										+fileInfo.fullName+"'>"; //hidden 태그 추가
+							$("#uploadedList").append(html); //div에 추가
+						}
+			});
+			});
 		listAttach(); //첨부파일 목록 로딩
 		//첨부파일 삭제
 		$("#uploadedList").on("click", ".file_del", function(e) {
@@ -94,22 +96,26 @@ $.ajax({
 		});
 	});
 	function listAttach(){
-$.ajax({
-								type : "post",
+		var csrf = "${_csrf.token}";
+		var param = {
+				"${_csrf.parameterName}" : csrf
+			};
+				$.ajax({
+					type : "post",
 					url : "${path}/board/getAttach/${dto.bno}",
+					data : param,
 					success : function(list) {
 						// list => json 형식의 데이터
-						$(list)
-								.each(
-										function() {
-											var fileInfo = getFileInfo(this);
-											var html = "<div><a href='"+fileInfo.getLink+"'>"
-													+ fileInfo.fileName
-													+ "</a>&nbsp;&nbsp;";
-											html += "<a href='#' class='file_del' data-src='"
-+this+"'>[삭제]</a></div>";
-											$("#uploadedList").append(html);
-										});
+						$(list).each(
+					function() {
+						var fileInfo = getFileInfo(this);
+						var html = "<div><a href='"+fileInfo.getLink+"'>"
+								+ fileInfo.fileName
+								+ "</a>&nbsp;&nbsp;";
+						html += "<a href='#' class='file_del' data-src='"
+								+this+"'>[삭제]</a></div>";
+									$("#uploadedList").append(html);
+						});
 					}
 				});
 	}
@@ -117,9 +123,11 @@ $.ajax({
 		var replytext = $("#replytext").val(); //댓글 내용
 		var bno = "${dto.bno}"; //게시물번호
 		// var param = "replytext="+replytext+"&bno="+bno;
+		var csrf = "${_csrf.token}";
 		var param = {
 			"replytext" : replytext,
-			"bno" : bno
+			"bno" : bno,
+			"${_csrf.parameterName}" : csrf
 		};
 		$.ajax({
 			type : "post",
@@ -195,6 +203,7 @@ $.ajax({
 	<%@ include file="../include/menu.jsp"%>
 	<h2>게시물 보기</h2>
 	<form id="form1" name="form1" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		<div>
 			작성일자 :
 			<fmt:formatDate value="${dto.regdate}"

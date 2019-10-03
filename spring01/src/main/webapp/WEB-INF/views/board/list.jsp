@@ -25,6 +25,7 @@
 	<h2>게시판</h2>
 	<!-- 검색폼 -->
 	<form name="form1" method="post" action="${path}/board/list.do">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		<select name="search_option">
 			<%-- <c:choose>
 <c:when test="${map.search_option == 'all' }">
@@ -53,7 +54,7 @@ value="${map.search_option=='title'?'selected':''}"/>>제목</option>
 		</c:if>
 	</form>
 	${map.count}개의 게시물이 있습니다.
-	<a href ="${path}/board/write.do/">글쓰기</a>
+	<%-- <a href ="${path}/board/write.do/">글쓰기</a> --%>
 	<table border="1" width="600px">
 		<tr>
 			<th>번호</th>

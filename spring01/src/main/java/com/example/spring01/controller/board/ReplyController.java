@@ -34,7 +34,7 @@ public class ReplyController {
 		replyService.create(dto);
 	}
 
-	@RequestMapping(value = "/delete/{rno}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/{rno}")
 	public ResponseEntity<String> delete(@PathVariable("rno") int rno) {
 		ResponseEntity<String> entity = null;
 		try {
@@ -118,8 +118,11 @@ public class ReplyController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/update/{rno}", method = { RequestMethod.PUT, RequestMethod.PATCH })
-	public ResponseEntity<String> update(@PathVariable("rno") int rno, @RequestBody ReplyDTO dto) {
+	@RequestMapping("update/{rno}")
+	@ResponseBody
+	public ResponseEntity<String> update(@PathVariable("rno") int rno, @ModelAttribute ReplyDTO dto) {
+		System.out.println("update/"+rno);
+		
 		ResponseEntity<String> entity = null;
 		try {
 			dto.setRno(rno);
@@ -132,6 +135,22 @@ public class ReplyController {
 		}
 		return entity;
 	}
+	
+//	@RequestMapping(value = "update/{rno}", method = { RequestMethod.PUT, RequestMethod.PATCH })
+//	@ResponseBody
+//	public ResponseEntity<String> update(@PathVariable("rno") int rno, @RequestBody ReplyDTO dto) {
+//		ResponseEntity<String> entity = null;
+//		try {
+//			dto.setRno(rno);
+//			// 서비스 호출
+//			replyService.update(dto);
+//			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//		}
+//		return entity;
+//	}
 
 	// @Controller : return => view(화면)
 	// @RestController : return => 데이터

@@ -17,38 +17,36 @@
 		});
 		$(".fileDrop")
 				.on(
-						"drop",
-						function(e) {
-							e.preventDefault(); //기본 효과 막음
-							//드래그한 파일들
-							var files = e.originalEvent.dataTransfer.files;
-							//console.log(files);
-							var file = files[0]; //첫번째 첨부파일
-							var formData = new FormData(); //폼 데이터 객체
-							formData.append("file", file); //첨부파일 추가
-							// processData: false : header가 아닌 body로 전달
-							$
-									.ajax({
-										url : "${path}/upload/uploadAjax",
-										data : formData,
-										dataType : "text",
-										processData : false,
-										contentType : false,
-										type : "post",
-										success : function(data) {
-											console.log(data);
-											//첨부파일의 정보
-											var fileInfo = getFileInfo(data);
-											//하이퍼링크
-											var html = "<a href='"+fileInfo.getLink+"'>"
-													+ fileInfo.fileName
-													+ "</a><br>";
-											//hidden 태그 추가
-											html += "<input type='hidden' name='files' value='"+fileInfo.fullName+"'>";
-											//div에 추가
-											$("#uploadedList").append(html);
-										}
-									});
+			"drop",function(e) {
+				e.preventDefault(); //기본 효과 막음
+				//드래그한 파일들
+				var files = e.originalEvent.dataTransfer.files;
+				//console.log(files);
+				var file = files[0]; //첫번째 첨부파일
+				var formData = new FormData(); //폼 데이터 객체
+				formData.append("file", file); //첨부파일 추가
+				// processData: false : header가 아닌 body로 전달
+				$.ajax({
+					url : "${path}/upload/uploadAjax",
+					data : formData,
+					dataType : "text",
+					processData : false,
+					contentType : false,
+					type : "post",
+					success : function(data) {
+						console.log(data);
+						//첨부파일의 정보
+						var fileInfo = getFileInfo(data);
+						//하이퍼링크
+						var html = "<a href='"+fileInfo.getLink+"'>"
+								+ fileInfo.fileName
+								+ "</a><br>";
+						//hidden 태그 추가
+						html += "<input type='hidden' name='files' value='"+fileInfo.fullName+"'>";
+						//div에 추가
+						$("#uploadedList").append(html);
+					}
+				});
 						});
 		$("#btnSave").click(function() {
 			var content = document.form1.content.value;
