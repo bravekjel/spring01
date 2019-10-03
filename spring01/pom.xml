@@ -15,7 +15,7 @@
 		<org.aspectj-version>1.9.4</org.aspectj-version>
 		<org.slf4j-version>1.7.26</org.slf4j-version>
 		<org.jackson-version>2.9.10</org.jackson-version>
-		<spring.security.version>5.1.3.RELEASE</spring.security.version>
+		<spring.security.version>5.1.5.RELEASE</spring.security.version>
 	</properties>
 	<repositories>
 		<repository>
