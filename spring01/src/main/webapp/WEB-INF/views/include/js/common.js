@@ -7,14 +7,17 @@ function checkImageType(fileName) {
 function getFileInfo(fullName) {
 	var fileName, imgsrc, getLink, fileLink;
 	if (checkImageType(fullName)) {// 이미지 파일일 경우
-		imgsrc = "/spring02/upload/displayFile?fileName=" + fullName;
+//		imgsrc = "/spring01/upload/displayFile?fileName=" + fullName;
+		imgsrc = "${path}/upload/displayFile?fileName=" + fullName;
 		fileLink = fullName.substr(14);
 		var front = fullName.substr(0, 12);
 		var end = fullName.substr(14);
-		getLink = "/spring02/upload/displayFile?fileName=" + front + end;
+//		getLink = "/spring01/upload/displayFile?fileName=" + front + end;
+		getLink = "${path}/upload/displayFile?fileName=" + front + end;
 	} else { // 이미지가 아닌 경우
 		fileLink = fullName.substr(12);
-		getLink = "/spring02/upload/displayFile?fileName=" + fullName;
+//		getLink = "/spring01/upload/displayFile?fileName=" + fullName;
+		getLink = "${path}/upload/displayFile?fileName=" + fullName;
 	}
 	fileName = fileLink.substr(fileLink.indexOf("_") + 1);
 	// {변수:값}

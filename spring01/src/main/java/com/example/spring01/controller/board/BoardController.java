@@ -178,7 +178,7 @@ public class BoardController {
 		return "redirect:/board/list.do";
 	}
 
-	// http://localhost:8080/spring02/board/getAttach/3
+	// http://localhost:8080/spring01/board/getAttach/3
 	// @PathVariable : parameter가 아닌 url에 포함되는 변수
 	// @RequestParam : parameter 변수
 	@RequestMapping("getAttach/{bno}")

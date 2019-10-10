@@ -71,7 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from 
 			board b, users m
 		where 
-			b.writer=m.userid and bno=#{bno}
+			b.writer=m.name and bno=#{bno}
 	</select>
 	<update id="increaseViewcnt">
 		update board
@@ -100,13 +100,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<choose>
 			<when test="search_option == 'all'">
 				where
-					b.writer=m.userid
+					b.writer=m.name
 				and
 					( name like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' )
 			</when>
 			<otherwise>
 				where 
-					b.writer=m.userid 
+					b.writer=m.name
 				and
 					${search_option} like '%'||#{keyword}||'%'
 			</otherwise>

@@ -69,9 +69,9 @@ public class ReplyController {
 	// /reply/list/1 => 1번 게시물의 댓글 목록 리턴
 	// /reply/list/2 => 2번 게시물의 댓글 목록 리턴
 	// @PathVariable : url에 입력될 변수값 지정
-	// http://localhost:9000/spring02/reply/list/1/1
+	// http://localhost:9000/spring01/reply/list/1/1
 	// 1번 게시물의 1페이지
-	// http://localhost:9000/spring02/reply/list/1/2
+	// http://localhost:9000/spring01/reply/list/1/2
 	// 1번 게시물의 2페이지
 	@RequestMapping(value = "/detail/{rno}", method = RequestMethod.GET)
 	public ModelAndView reply_detail(@PathVariable("rno") int rno, ModelAndView mav) {

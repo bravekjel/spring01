@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
+<script src="${path}/include/js/common.js"></script>
 <style>
 .fileDrop {
 	width: 100%;
@@ -71,13 +72,11 @@ small {
 					$.ajax({
 							type : "post",
 							url : "${path}/upload/uploadAjax",
-							data : formData,
+							data : param,
 							dataType : "text",
 							processData : false,
 							contentType : false,
-							success : function(
-									data, status,
-									req) {
+							success : function(data, status,req) {
 								//alert(data);
 						console.log("data:"+ data); //업로드된 파일 이름
 						console.log("status:"+ stauts); //성공,실패 여부
@@ -99,9 +98,8 @@ small {
 									+ "</a>";
 						}
 						str += "<span data-src="+data+">[삭제]</span></div>";
-						$(".uploadedList")
-								.append(str);
-					}
+						$(".uploadedList").append(str);
+					} /* success 끝 */
 						});
 				});
 		});

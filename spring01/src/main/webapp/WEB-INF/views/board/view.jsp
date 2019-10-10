@@ -40,13 +40,14 @@
 							}
 							//processData: false - header가 아닌 body로 전송
 					$.ajax({
-						url : "${path}/upload/uploadAjax",
+							type : "post",
+							url : "${path}/upload/uploadAjax",
 							data : formData,
 							dataType : "text",
 							processData : false,
 							contentType : false,
-							type : "post",
-							success : function(data) { //콜백함수
+							success : 
+							function(data) { //콜백함수
 								var fileInfo = getFileInfo(data); //첨부파일 정보
 								var html = "<a href='"+fileInfo.getLink+"'>"
 										+ fileInfo.fileName
@@ -55,20 +56,25 @@
 										+fileInfo.fullName+"'>"; //hidden 태그 추가
 							$("#uploadedList").append(html); //div에 추가
 						}
+						 /* success 끝 */
 			});
 			});
 		listAttach(); //첨부파일 목록 로딩
 		//첨부파일 삭제
 		$("#uploadedList").on("click", ".file_del", function(e) {
 			var that = $(this); //클릭한 태그
+			var csrf = "${_csrf.token}";
+			var fileName = $(this).attr("data-src");
 			$.ajax({
 				type : "post",
 				url : "${path}/upload/deleteFile",
 				data : {
 					fileName : $(this).attr("data-src")
+					
 				},
 				dataType : "text",
 				success : function(result) {
+						/* console.log("fileName="+filename); */
 					if (result == "deleted") {
 						that.parent("div").remove();
 					}
@@ -231,7 +237,7 @@
 		<div>
 			<input type="hidden" name="bno" value="${dto.bno}">
 			<!-- 본인의 게시물만 수정,삭제 버튼 표시 -->
-			<c:if test="${sessionScope.userid == dto.writer}">
+			<c:if test="${sessionScope.writer == dto.writer}">
 				<button type="button" id="btnUpdate">수정</button>
 				<button type="button" id="btnDelete">삭제</button>
 			</c:if>
