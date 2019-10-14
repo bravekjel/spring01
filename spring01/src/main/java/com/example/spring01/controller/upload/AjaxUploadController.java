@@ -90,6 +90,7 @@ public class AjaxUploadController {
 	@ResponseBody
 	@RequestMapping(value = "/upload/deleteFile", method = RequestMethod.POST)
 	public ResponseEntity<String> deleteFile(String fileName) {
+		System.out.println("deleteFile1="+fileName);
 		// fileName에는 이미지 파일의 경우 썸네일 파일 이름이 넘어옴
 		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);// 확장자 검사
 		MediaType mType = MediaUtils.getMediaType(formatName);
@@ -101,6 +102,8 @@ public class AjaxUploadController {
 			new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();// 썸네일삭제
 		}
 		// 이미지 파일의 경우 썸네일이 삭제됨
+		System.out.println("deleteFile2="+fileName);
+		boardService.deleteFile(fileName);
 		new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();// 파일삭제
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}

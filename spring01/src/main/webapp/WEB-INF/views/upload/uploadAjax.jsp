@@ -64,15 +64,11 @@ small {
 							formData.append("file",file);
 							// processData:false=> post방식
 							// contentType: false=> multipart/form-data
-							var csrf = "${_csrf.token}";
-							var param = {
-									"formData": formData,
-									"${_csrf.parameterName}" : csrf
-							}
+							
 					$.ajax({
 							type : "post",
 							url : "${path}/upload/uploadAjax",
-							data : param,
+							data : formData,
 							dataType : "text",
 							processData : false,
 							contentType : false,

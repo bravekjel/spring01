@@ -41,7 +41,7 @@ public class UploadFileUtils {
 		// 아이콘 이름을 리턴
 		// File.separatorChar : 디렉토리 구분자
 		// 윈도우 \ , 유닉스(리눅스) /
-		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '\\');
+		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 
 	private static String makeThumbnail(String uploadPath, String path, String fileName) throws Exception {

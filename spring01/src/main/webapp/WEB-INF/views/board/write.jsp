@@ -15,9 +15,7 @@
 		$(".fileDrop").on("dragenter dragover", function(e) {
 			e.preventDefault(); //기본효과 막음
 		});
-		$(".fileDrop")
-				.on(
-			"drop",function(e) {
+		$(".fileDrop").on("drop",function(e) {
 				e.preventDefault(); //기본 효과 막음
 				//드래그한 파일들
 				var files = e.originalEvent.dataTransfer.files;
@@ -26,6 +24,8 @@
 				var formData = new FormData(); //폼 데이터 객체
 				formData.append("file", file); //첨부파일 추가
 				// processData: false : header가 아닌 body로 전달
+				
+				
 				$.ajax({
 					url : "${path}/upload/uploadAjax",
 					data : formData,

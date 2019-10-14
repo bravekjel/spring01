@@ -7,7 +7,8 @@ import com.example.spring01.model.board.dto.BoardDTO;
 public interface BoardDAO {
 	public void deleteFile(String fullName);
 	public List<String> getAttach(int bno);
-	public void addAttach(String fullName);
+//	public void addAttach(String fullName);
+	public void addAttach(BoardDTO dto);
 	public void updateAttach(String fullName, int bno);
 	public void create(BoardDTO dto) throws Exception;
 	public BoardDTO read(int bno) throws Exception;

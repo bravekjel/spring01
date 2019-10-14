@@ -24,17 +24,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			fullName=#{fullName}
 	</delete>
 	<insert id="insert">
+	<selectKey resultType="int" keyProperty="bno" order="BEFORE">
+	select max(bno)+1 from board
+	</selectKey>
 		insert into 
 			board
 			(bno,title,content,writer,show)
 		values
-			(seq_board.nextval,#{title},#{content},#{writer},'y')
+			(#{bno},#{title},#{content},#{writer},'y')
 	</insert>
 	<insert id="addAttach">
+	<selectKey resultType="int" keyProperty="bno" order="BEFORE">
+	select max(bno) from board
+	</selectKey>
 		insert into 
 			attach (fullName,bno)
 		values
-			( #{fullName}, seq_board.currval)
+			( #{fullName}, #{bno})
 	</insert>
 	<insert id="updateAttach">
 		insert into 

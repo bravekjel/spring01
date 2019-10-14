@@ -25,7 +25,6 @@ public class BoardServiceImpl implements BoardService {
 	public List<String> getAttach(int bno) {
 		return boardDao.getAttach(bno);
 	}
-
 	@Override
 	public void create(BoardDTO dto) throws Exception {
 		String title = dto.getTitle();
@@ -49,14 +48,7 @@ public class BoardServiceImpl implements BoardService {
 		dto.setWriter(writer);
 		//게시물 등록
 		boardDao.create(dto);
-		//첨부파일 정보 등록
-		String[] files=dto.getFiles(); //첨부파일 배열
-		//첨부파일이 없으면 종료
-		if(files==null) return;
-		//첨부파일들의 정보를 tbl_attach 테이블에 insert
-		for(String name : files){
-		boardDao.addAttach(name);
-		}
+
 	}
 
 	@Override
@@ -112,6 +104,20 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int countArticle(String search_option, String keyword) throws Exception {
 		return boardDao.countArticle(search_option, keyword);
+	}
+
+	@Override
+	public void addAttach(BoardDTO dto) {
+		//첨부파일 정보 등록
+		String[] files=dto.getFiles(); //첨부파일 배열
+		//첨부파일이 없으면 종료
+		if(files==null) return;
+		//첨부파일들의 정보를 tbl_attach 테이블에 insert
+		for(String name : files){
+			dto.setFullName(name);
+			boardDao.addAttach(dto);
+		}
+		
 	}
 
 }

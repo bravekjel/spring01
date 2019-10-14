@@ -31,13 +31,10 @@
 							var files = e.originalEvent.dataTransfer.files;
 							var file = files[0];
 							var formData =new FormData();
-							var csrf = "${_csrf.token}";
+						
 							//폼데이터에 추가
 							formData.append("file",file);
-							var param = {
-									"formData": formData,
-									"${_csrf.parameterName}" : csrf
-							}
+							
 							//processData: false - header가 아닌 body로 전송
 					$.ajax({
 							type : "post",

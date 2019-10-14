@@ -90,6 +90,11 @@ public class BoardController {
 		System.out.println("userid="+userid);
 		dto.setWriter(writer);
 		boardService.create(dto);
+		try {
+			boardService.addAttach(dto);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "redirect:/board/list.do";
 	}
 

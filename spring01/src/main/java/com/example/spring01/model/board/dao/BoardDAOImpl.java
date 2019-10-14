@@ -19,18 +19,6 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.delete("board.deleteAttach",fullName);
 
 	}
-
-	@Override
-	public List<String> getAttach(int bno) {
-		return sqlSession.selectList("board.getAttach",bno);
-	}
-
-	@Override
-	public void addAttach(String fullName) {
-		sqlSession.insert("board.addAttach", fullName);
-
-	}
-
 	@Override
 	public void updateAttach(String fullName, int bno) {
 		Map<String,Object> map=new HashMap<>();
@@ -45,7 +33,16 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert("board.insert", dto);
 
 	}
+	
+	@Override
+	public void addAttach(BoardDTO dto) {
+		sqlSession.insert("board.addAttach", dto);
 
+	}
+	@Override
+	public List<String> getAttach(int bno) {
+		return sqlSession.selectList("board.getAttach",bno);
+	}
 	@Override
 	public BoardDTO read(int bno) throws Exception {
 		return sqlSession.selectOne("board.view",bno);

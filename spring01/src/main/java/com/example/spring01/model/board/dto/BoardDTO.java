@@ -15,11 +15,19 @@ public class BoardDTO {
 	private String show;
 	//첨부파일의 이름 배열
 	private String[] files;
+	private String fullName;
 	
 	//generate Getter&Setter
 	//getnerate toString
+	
 	public int getBno() {
 		return bno;
+	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 	public void setBno(int bno) {
 		this.bno = bno;
@@ -82,8 +90,8 @@ public class BoardDTO {
 	public String toString() {
 		return "BoardDTO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer
 				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", name=" + name + ", cnt=" + cnt + ", show=" + show
-				+ ", files=" + Arrays.toString(files) + "]";
+				+ ", files=" + Arrays.toString(files) + ", fullName=" + fullName + "]";
 	}
-	
+
 	
 }
