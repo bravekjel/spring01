@@ -120,7 +120,7 @@ function sfind(){
 
             <li class="list-item"><a href="${path}/board/list.do">board</a></li>
 
-            <li class="list-item"><a href="#">Download</a></li>
+            <li class="list-item"><a href="${path}/search_stock/finan2.do">DaechaDownload</a></li>
 
             <li class="list-item"><a href="#">Documentation</a></li>
 

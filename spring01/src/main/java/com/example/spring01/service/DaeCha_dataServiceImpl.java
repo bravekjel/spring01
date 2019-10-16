@@ -15,5 +15,10 @@ public class DaeCha_dataServiceImpl implements DaeCha_dataService {
 	public void insert(DaeCha_dataDTO dto) {
 		daechaDao.insert(dto);
 	}
+	@Override
+	public String check(String num) {
+		
+		return  daechaDao.check(num);
+	}
 
 }

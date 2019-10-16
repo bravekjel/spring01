@@ -96,7 +96,14 @@ VALUES
 	)
 
 </insert>
-	
+<select id="check" resultType="String">
+SELECT
+	COUNT(*)
+FROM
+	DaeCha_data
+WHERE
+	s_num=#{num}
+</select>
 </mapper>
 
 

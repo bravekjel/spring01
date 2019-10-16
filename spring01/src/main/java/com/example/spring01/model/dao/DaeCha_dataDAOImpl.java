@@ -19,5 +19,10 @@ public class DaeCha_dataDAOImpl implements DaeCha_dataDAO {
 		System.out.println("DAOImpl="+dto);
 		sqlSession.insert("daecha.insert",dto);
 	}
+	@Override
+	public String check(String num) {
+		
+		return sqlSession.selectOne("daecha.check",num);
+	}
 
 }

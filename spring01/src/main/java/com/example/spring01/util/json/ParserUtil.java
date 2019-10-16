@@ -18,6 +18,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+//import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -206,7 +207,8 @@ public class ParserUtil {
 	}
 	private static String getTagValue(String sTag, Element element) {
 		try {
-			String result = element.getElementsByTagName(sTag).item(0).getTextContent();
+			Node result1 = element.getElementsByTagName(sTag).item(0).getFirstChild();
+			String result = result1.getNodeValue();
 			return result;
 		} catch (NullPointerException e) {
 			return "";
